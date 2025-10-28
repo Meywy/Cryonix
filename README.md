@@ -1,1 +1,1 @@
-Revisiting Paper plugin creatin using Kotlin
+Revisiting Paper plugin creation using Kotlin
