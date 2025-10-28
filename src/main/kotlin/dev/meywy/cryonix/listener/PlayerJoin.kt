@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 
 object PlayerJoin : Listener {
 
-    val prefixComponent = Utils.prefix
+    private val prefixComponent = Utils.prefix
 
     @EventHandler
     fun onJoin(event: PlayerJoinEvent) {

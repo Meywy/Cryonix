@@ -9,7 +9,7 @@ import revxrsal.commands.bukkit.annotation.CommandPermission
 
 object GamemodeCommand {
 
-    val prefixComponent = Utils.prefix
+    private val prefixComponent = Utils.prefix
 
     @Command("gmc")
     @CommandPermission("cryonix.gamemode")
