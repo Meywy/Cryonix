@@ -7,7 +7,7 @@ import org.bukkit.entity.Player
 import revxrsal.commands.annotation.Command
 import revxrsal.commands.bukkit.annotation.CommandPermission
 
-object GamemodeCommand {
+class GamemodeCommand {
 
     private val prefixComponent = Utils.prefix
 

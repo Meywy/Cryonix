@@ -7,8 +7,9 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerQuitEvent
 
-object PlayerJoin : Listener {
+class JoinQuitEvent : Listener {
 
     private val prefixComponent = Utils.prefix
 
@@ -16,12 +17,19 @@ object PlayerJoin : Listener {
     fun onJoin(event: PlayerJoinEvent) {
         val player = event.player
         val nameComponent = Component.text(player.name, NamedTextColor.AQUA)
-        val joinMessageComponent = Component.text("[+] " + player.name, NamedTextColor.GREEN)
-
+        val joinMessageComponent = Component.text("[+] ${player.name}", NamedTextColor.GREEN)
 
         event.joinMessage(joinMessageComponent)
-
-        event.player.sendMini("<0> <yellow>Welcome to the server <1>", prefixComponent, nameComponent)
+        player.sendMini("<0> <yellow>Welcome <1>", prefixComponent, nameComponent)
 
     }
+
+    @EventHandler
+    fun onLeave(event: PlayerQuitEvent) {
+        val player = event.player
+        val quitMessageComponent = Component.text("[-] ${player.name}", NamedTextColor.RED)
+
+        event.quitMessage(quitMessageComponent)
+    }
+
 }
