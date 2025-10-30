@@ -17,16 +17,21 @@ class StaffCommand {
 
     @Subcommand("on")
     fun enableStaffMode(player: Player) {
-        val uuid = player.uniqueId
-        StaffManager.staffEnable(uuid)
+        if (StaffManager.getStaffList().contains(player.uniqueId)) {
+            player.sendMini("<0> <red>You are already in staff mode!", prefixComponent)
+            return
+        }
+        StaffManager.staffEnable(player)
         player.sendMini("<0> <green>Staff enabled!", prefixComponent)
     }
 
     @Subcommand("off")
     fun disableStaffMode(player: Player) {
-        val uuid = player.uniqueId
-
-        StaffManager.staffDisable(uuid)
+        if (!StaffManager.getStaffList().contains(player.uniqueId)) {
+            player.sendMini("<0> <red>You are currently not in staff mode!", prefixComponent)
+            return
+        }
+        StaffManager.staffDisable(player)
         player.sendMini("<0> <red>Staff disabled!", prefixComponent)
     }
 }

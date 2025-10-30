@@ -1,28 +1,27 @@
 package dev.meywy.cryonix.manager
 
-import dev.meywy.cryonix.Cryonix
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.Material
-import org.bukkit.NamespacedKey
+import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
-import org.bukkit.persistence.PersistentDataType
 import java.util.UUID
 
 object StaffManager {
-
-    private val plugin = Cryonix.instance
     private val staffList = mutableListOf<UUID>()
-    private val RTP_ITEM_KEY = NamespacedKey(plugin, "rtp_item")
 
-    fun staffEnable(uuid: UUID) {
+    fun staffEnable(player: Player) {
+        val uuid = player.uniqueId
         if (staffList.contains(uuid)) return
         staffList.add(uuid)
+        giveStaffItems(uuid)
     }
 
-    fun staffDisable(uuid: UUID) {
+    fun staffDisable(player: Player) {
+        val uuid = player.uniqueId
         if (!staffList.contains(uuid)) return
+        player.inventory.clear()
         staffList.remove(uuid)
     }
 
@@ -49,17 +48,29 @@ object StaffManager {
                             .color(NamedTextColor.GRAY)
                     )
                 )
-                persistentDataContainer.set(
-                    RTP_ITEM_KEY,
-                    PersistentDataType.BYTE,
-                    1.toByte()
+            }
+        }
+
+        val menu = ItemStack(Material.BOOK).apply {
+            amount = 1
+            itemMeta = itemMeta!!.apply {
+                displayName(
+                    Component.text("Menu")
+                        .color(NamedTextColor.DARK_GREEN)
+                )
+                lore(
+                    listOf(
+                        Component.text("Opens Staff Menu!")
+                            .color(NamedTextColor.GREEN),
+                        Component.text("Right Click to use.")
+                            .color(NamedTextColor.GRAY)
+                    )
                 )
             }
         }
 
         player.inventory.setItem(1, rtp)
-
-
     }
-
 }
+
+

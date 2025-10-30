@@ -12,7 +12,6 @@ import revxrsal.commands.bukkit.BukkitLamp
 class Cryonix : JavaPlugin() {
 
     override fun onEnable() {
-        instance = this
 
         Bukkit.getPluginManager().registerEvents(JoinQuitEvent(), this)
 
@@ -26,14 +25,5 @@ class Cryonix : JavaPlugin() {
         )
 
     }
-
-    override fun onDisable() {
-    }
-
-    companion object {
-        lateinit var instance: Cryonix
-            private set
-    }
-
 
 }

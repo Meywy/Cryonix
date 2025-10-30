@@ -33,6 +33,11 @@ class DebugCommand {
     fun staff(sender: Player) {
         val staffList = StaffManager.getStaffList()
 
+        if (staffList.isEmpty()) {
+            sender.sendMini("<0> No staff members are currently in staff mod.", prefixComponent)
+            return
+        }
+
         sender.sendMini("<0> Staff List: $staffList", prefixComponent)
     }
 
