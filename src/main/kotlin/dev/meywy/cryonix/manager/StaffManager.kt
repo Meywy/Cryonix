@@ -70,7 +70,7 @@ object StaffManager {
         }
 
         player.inventory.setItem(1, rtp)
-        player.inventory.setItem(5, menu)
+        player.inventory.setItem(4, menu)
     }
 }
 

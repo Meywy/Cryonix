@@ -2,6 +2,7 @@ package dev.meywy.cryonix.command
 
 import dev.meywy.cryonix.Utils
 import dev.meywy.cryonix.kotlin.sendMini
+import dev.meywy.cryonix.menu.StaffMenu
 import dev.meywy.cryonix.manager.StaffManager
 import org.bukkit.entity.Player
 import revxrsal.commands.annotation.Command
@@ -34,4 +35,10 @@ class StaffCommand {
         StaffManager.staffDisable(player)
         player.sendMini("<0> <red>Staff disabled!", prefixComponent)
     }
+
+    @Subcommand("menu")
+    fun staffMenu(player: Player) {
+        StaffMenu.StaffGui(player)
+    }
+
 }
