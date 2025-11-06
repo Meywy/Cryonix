@@ -1,1 +1,1 @@
-Revisiting Paper plugin creation using Kotlin
+Minecraft Utility Plugin made in Kotlin
